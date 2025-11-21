@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.kung.dppf.ui.main.fragment.MainViewProductItem" />
+
+        <variable
+            name="viewModel"
+            type="MainViewProductItem" />
+
+        <import type="com.kung.dppf.R" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/trash_view_width"
+        android:layout_height="@dimen/trash_view_height"
+        android:layout_margin="@dimen/trash_view_margin_h"
+        android:padding="2dp"
+        android:background="@{viewModel.entity.bgDrawable}"
+        android:foreground="?android:attr/selectableItemBackground"
+        onClickCommand="@{viewModel.itemClick}">
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@={viewModel.entity.productCode}"
+            android:textColor="@{viewModel.entity.textColorName}"
+            android:textSize="@dimen/trash_type_price"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@={viewModel.entity.productName}"
+            android:textColor="@{viewModel.entity.textColorName}"
+            android:textSize="@dimen/trash_type"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_code"
+            app:layout_constraintBottom_toTopOf="@+id/tv_unit_price"
+            app:layout_constraintVertical_chainStyle="packed"/>
+<!--        android:text="@={viewModel.entity.typeName}"-->
+        <TextView
+            android:id="@+id/tv_unit_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.entity.typeName}"
+            android:textColor="@{viewModel.entity.textColorPrice}"
+            android:textSize="@dimen/trash_type_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

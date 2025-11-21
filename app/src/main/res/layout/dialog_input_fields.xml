@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/et_nutrition_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="营养成分名称"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_nutrition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="营养成分"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="含量"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/et_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="排序"
+        android:inputType="number" />
+
+</LinearLayout>

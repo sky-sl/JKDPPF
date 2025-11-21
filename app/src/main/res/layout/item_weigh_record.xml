@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="com.kung.dppf.ui.main.fragment.RecordViewItem" />
+
+        <variable
+            name="viewModel"
+            type="RecordViewItem" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView
+            android:id="@+id/tv_hh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.index}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            android:paddingLeft="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_sjsj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.createTime}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.productCode}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.productName}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.TypeName}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.ProductionDate}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.ShelfLife}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.NetWeight}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"/>
+
+
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="0.5"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:text="@{viewModel.entity.batchCode}"-->
+<!--            android:textColor="@color/textMainTitle"-->
+<!--            android:textSize="12dp"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/iv_delete"/>-->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:text="详情"
+            android:gravity="center"
+            android:textColor="@color/home_main_text_color"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            onClickCommand="@{viewModel.onCommandDetail}"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@mipmap/ic_printer_on"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            onClickCommand="@{viewModel.onCommandPrint}"/>
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@mipmap/ic_trash_delete"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            onClickCommand="@{viewModel.onCommandDelete}"/>
+    </LinearLayout>
+</layout>

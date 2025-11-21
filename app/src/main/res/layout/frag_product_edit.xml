@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <import type="com.kung.dppf.ui.main.fragment.ProductAddViewModel" />
+
+        <variable
+            name="viewModel"
+            type="ProductAddViewModel" />
+
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tv_btn_save"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            android:background="@drawable/button_background"
+            android:text="保存产品"
+            android:gravity="center"
+            android:textColor="@color/btn_text"
+            android:textSize="@dimen/font_btn_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:foreground="?android:attr/selectableItemBackground"
+            onClickCommand="@{viewModel.onCommandSave}"/>
+
+        <TextView
+            android:id="@+id/tv_btn_back"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            android:background="@drawable/button_background"
+            android:text="返回"
+            android:gravity="center"
+            android:textColor="@color/btn_text"
+            android:textSize="@dimen/font_btn_text"
+            android:layout_marginStart="30dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_btn_save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            onClickCommand="@{viewModel.onCommandBack}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_code"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_code"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_code"/>
+
+        <TextView
+            android:id="@+id/tv_product_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_code"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_code"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_product_code"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_code"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.15">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productCode}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_name"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"/>
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_name"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_name"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_product_name"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_name"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_name"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_product_code"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productName}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_forg"
+            app:layout_constraintTop_toTopOf="@+id/tv_forg"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_forg"/>
+
+        <TextView
+            android:id="@+id/tv_forg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_formula"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_formula"
+            app:layout_constraintEnd_toStartOf="@+id/ll_formula"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_formula"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_product_date"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入配料表"
+                android:maxLines="5"
+                android:maxLength="100"
+                android:gravity="left"
+                android:text="@={viewModel.productIngredients}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_date"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_date"/>
+
+        <TextView
+            android:id="@+id/tv_product_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_type"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_date"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_product_date"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_date"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_date"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_product_name"
+            onClickCommand="@{viewModel.onCommandSelectType}">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@{viewModel.productTypeName}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+            <ImageView
+                android:layout_width="@dimen/btn_key"
+                android:layout_height="@dimen/btn_key"
+                android:src="@mipmap/ic_edit"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_bzq"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_bzq"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_bzq"/>
+
+        <TextView
+            android:id="@+id/tv_product_bzq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_shelf_life"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_bzq"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_product_bzq"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_bzq"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_bzq"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_formula"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productShelfLife}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_zcff"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_zcff"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_zcff"/>
+
+        <TextView
+            android:id="@+id/tv_product_zcff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_storage"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_zcff"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_product_zcff"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_zcff"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_zcff"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_product_bzq"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productStorageMethod}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_syff"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_syff"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_syff"/>
+
+        <TextView
+            android:id="@+id/tv_product_syff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_eat"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_syff"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_product_syff"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_syff"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_syff"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_product_zcff"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productEdibleMethod}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_code"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_zysx"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_zysx"/>
+
+        <TextView
+            android:id="@+id/tv_product_zysx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_note"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_product_zysx"
+            app:layout_constraintEnd_toStartOf="@+id/ll_product_zysx"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_product_zysx"
+            android:layout_width="@dimen/edit_input_width"
+            android:layout_height="120dp"
+            android:minHeight="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_product_code"
+            app:layout_constraintTop_toBottomOf="@+id/ll_product_syff"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入注意事项"
+                android:maxLines="5"
+                android:maxLength="100"
+                android:gravity="left"
+                android:text="@={viewModel.productAttention}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_zxbz"
+            app:layout_constraintTop_toTopOf="@+id/tv_zxbz"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_zxbz"/>
+
+        <TextView
+            android:id="@+id/tv_zxbz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_standard"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_zxbz"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_zxbz"
+            app:layout_constraintEnd_toStartOf="@+id/ll_zxbz"/>
+
+        <LinearLayout
+            android:id="@+id/ll_zxbz"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productStandard}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_scxkzbh"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_scxkzbh"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_scxkzbh"/>
+
+        <TextView
+            android:id="@+id/tv_product_scxkzbh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_license"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_scxkzbh"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_scxkzbh"
+            app:layout_constraintEnd_toStartOf="@+id/ll_scxkzbh"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_scxkzbh"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_zxbz"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productLicense}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_sccj"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_sccj"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_sccj"/>
+
+        <TextView
+            android:id="@+id/tv_product_sccj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_factory"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@+id/ll_sccj"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_sccj"
+            app:layout_constraintEnd_toStartOf="@+id/ll_sccj"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_sccj"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_scxkzbh"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productManufacturer}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dz"
+            app:layout_constraintTop_toTopOf="@+id/tv_dz"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_dz"/>
+
+        <TextView
+            android:id="@+id/tv_dz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_address"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_dz"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_dz"
+            app:layout_constraintEnd_toStartOf="@+id/ll_dz"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_dz"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_sccj"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productAddress}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_wts"
+            app:layout_constraintTop_toTopOf="@+id/tv_wts"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_wts"/>
+
+        <TextView
+            android:id="@+id/tv_wts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_entrust"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_wts"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_wts"
+            app:layout_constraintEnd_toStartOf="@+id/ll_wts"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_wts"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_dz"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productEntrust}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_wtsdz"
+            app:layout_constraintTop_toTopOf="@+id/tv_wtsdz"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_wtsdz"/>
+
+        <TextView
+            android:id="@+id/tv_wtsdz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_entrust_address"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_wtsdz"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_wtsdz"
+            app:layout_constraintEnd_toStartOf="@+id/ll_wtsdz"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_wtsdz"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_wts"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productEntrustAddress}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_cd"
+            app:layout_constraintTop_toTopOf="@+id/tv_cd"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_cd"/>
+
+        <TextView
+            android:id="@+id/tv_cd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_origin"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_cd"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_cd"
+            app:layout_constraintEnd_toStartOf="@+id/ll_cd"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_cd"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_wtsdz"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productOrigin}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dh"
+            app:layout_constraintTop_toTopOf="@+id/tv_dh"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_dh"/>
+
+        <TextView
+            android:id="@+id/tv_dh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_phone"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/label_margin_end"
+            app:layout_constraintTop_toTopOf="@+id/ll_dh"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_dh"
+            app:layout_constraintEnd_toStartOf="@+id/ll_dh"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_dh"
+            android:layout_width="@dimen/edit_input_width_longer"
+            android:layout_height="@dimen/edit_input_height"
+            android:gravity="center"
+            android:background="@drawable/shape_input_rect_corner"
+            android:orientation="horizontal"
+            android:padding="@dimen/edit_padding"
+            android:layout_marginTop="@dimen/edit_margin_top"
+            app:layout_constraintStart_toStartOf="@+id/ll_zxbz"
+            app:layout_constraintTop_toBottomOf="@+id/ll_cd"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLines="1"
+                android:text="@={viewModel.productContact}"
+                android:textColor="@color/textColorGreen"
+                android:textColorHint="@color/textColorHint"
+                android:textSize="@dimen/edit_content_font" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/require_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_yycf"
+            app:layout_constraintTop_toTopOf="@+id/tv_yycf"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_yycf"/>
+
+        <TextView
+            android:id="@+id/tv_yycf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_nutrition"
+            android:textColor="@color/textColorGreen"
+            android:textSize="@dimen/edit_label_font"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/ll_dh"
+            app:layout_constraintEnd_toEndOf="@+id/tv_product_scxkzbh"
+            android:visibility="visible"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
+            android:background="@drawable/shape_btn_rect_corner_green"
+            android:text="增加"
+            android:gravity="center"
+            android:textColor="@color/btnColorGreen"
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="@+id/tv_yycf"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_yycf"
+            app:layout_constraintEnd_toEndOf="@+id/ll_dh"
+            onClickCommand="@{viewModel.onCommandAddNutrition}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:itemBinding="@{viewModel.itemBinding}"
+            app:items="@{viewModel.observableList}"
+            app:layoutManager="@{LayoutManagers.linear()}"
+            app:lineManager="@{LineManagers.horizontal()}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_yycf"
+            app:layout_constraintStart_toStartOf="@+id/tv_yycf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

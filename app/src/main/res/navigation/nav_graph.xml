@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFrag">
+
+    <fragment
+        android:id="@+id/mainFrag"
+        android:name="com.kung.dppf.ui.main.fragment.MainFrag"
+        android:label="MainFrag" />
+    <fragment
+        android:id="@+id/settingFrag"
+        android:name="com.kung.dppf.ui.main.fragment.SettingFrag"
+        android:label="SettingFrag" />
+    <fragment
+        android:id="@+id/productFrag"
+        android:name="com.kung.dppf.ui.main.fragment.ProductFrag"
+        android:label="ProductFrag" />
+    <fragment
+        android:id="@+id/productAddFrag"
+        android:name="com.kung.dppf.ui.main.fragment.ProductAddFrag"
+        android:label="ProductAddFrag" />
+    <fragment
+        android:id="@+id/recordFrag"
+        android:name="com.kung.dppf.ui.main.fragment.RecordFrag"
+        android:label="RecordFrag" />
+    <fragment
+        android:id="@+id/productTypeFrag"
+        android:name="com.kung.dppf.ui.main.fragment.ProductTypeFrag"
+        android:label="ProductTypeFrag" />
+    <fragment
+        android:id="@+id/recordDetailFrag"
+        android:name="com.kung.dppf.ui.main.fragment.RecordDetailFrag"
+        android:label="RecordDetailFrag" />
+</navigation>

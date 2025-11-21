@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <import type="com.kung.dppf.ui.main.fragment.RecordDetailViewModel" />
+
+        <variable
+            name="viewModel"
+            type="RecordDetailViewModel" />
+
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_label_preview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.95"
+            android:background="@drawable/label_border_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="80:80"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:paddingHorizontal="5dp">
+
+            <TextView
+                android:id="@+id/text_net_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/layout_product_info"
+                app:layout_constraintEnd_toEndOf="@+id/layout_product_info"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/product_net_weight_colon + viewModel.mWeighRecord.netWeight + @string/unit_kg}"
+                android:maxLines="1"
+                android:textSize="30sp"
+                android:textColor="@color/textColor"/>
+            <LinearLayout
+                android:id="@+id/layout_product_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/text_net_weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.4"
+                android:orientation="vertical">
+                <!--            <TextView-->
+                <!--                android:id="@+id/label_product_title"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                app:layout_constraintTop_toBottomOf="@+id/label_title"-->
+                <!--                app:layout_constraintStart_toStartOf="parent"-->
+                <!--                android:layout_marginStart="5dp"-->
+                <!--                android:layout_marginTop="3dp"-->
+                <!--                android:text="@{@string/product_type_name + @string/maohao}"-->
+                <!--                android:textSize="@dimen/show_label_font"-->
+                <!--                android:textColor="@color/textColor"/>-->
+                <TextView
+                    android:id="@+id/label_product_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_type_name_colon + viewModel.mWeighRecord.typeName}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_formula_colon + viewModel.mWeighRecord.ingredientContent}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_produce_date_colon + viewModel.mWeighRecord.productionDate}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_shelf_life_colon + viewModel.mWeighRecord.shelfLife}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_storage_colon + viewModel.mWeighRecord.storageMethod}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_eat_colon + viewModel.mWeighRecord.edibleMethod}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_note_colon + viewModel.mWeighRecord.precautions}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/layout_product_nutrition"
+                app:layout_constraintEnd_toEndOf="@+id/layout_product_nutrition"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/product_name_colon + viewModel.mWeighRecord.productName}"
+                android:maxLines="1"
+                android:textSize="30sp"
+                android:textColor="@color/textColor"/>
+
+            <TextView
+                android:id="@+id/text_nutrition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/layout_product_nutrition"
+                app:layout_constraintEnd_toEndOf="@+id/layout_product_nutrition"
+                app:layout_constraintTop_toBottomOf="@+id/text_product_name"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/product_nutrition"
+                android:maxLines="1"
+                android:textSize="@dimen/show_label_font"
+                android:textColor="@color/textColor"/>
+
+            <LinearLayout
+                android:id="@+id/layout_product_nutrition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/text_nutrition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.6"
+                android:background="@drawable/label_border_black"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/project"
+                        android:textSize="@dimen/show_label_font"
+                        android:textColor="@color/textColor"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/per_100g"
+                        android:textSize="@dimen/show_label_font"
+                        android:textColor="@color/textColor"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="@string/nrv_percent"
+                        android:textSize="@dimen/show_label_font"
+                        android:textColor="@color/textColor"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/textColor"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:itemBinding="@{viewModel.itemBindingNutrition}"
+                    app:items="@{viewModel.observableListNutrition}"
+                    app:layoutManager="@{LayoutManagers.linear()}"
+                    app:lineManager="@{LineManagers.horizontal()}"
+                    android:layout_margin="2dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_product_info2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_standard_colon + viewModel.mWeighRecord.standard}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_license_colon + viewModel.mWeighRecord.productionLicense}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_factory_colon + viewModel.mWeighRecord.manufacturer}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_address_colon + viewModel.mWeighRecord.address}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_entrust_colon + viewModel.mWeighRecord.entrust}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_entrust_address_colon + viewModel.mWeighRecord.entrustAddress}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_origin_colon + viewModel.mWeighRecord.origin}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_phone_colon + viewModel.mWeighRecord.phone}"
+                    android:textSize="@dimen/show_label_font"
+                    android:textColor="@color/textColor"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_btn_back"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            android:background="@drawable/button_background"
+            android:text="返回"
+            android:gravity="center"
+            android:textColor="@color/btn_text"
+            android:textSize="@dimen/font_btn_text"
+            android:layout_marginStart="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            onClickCommand="@{viewModel.onCommandBack}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

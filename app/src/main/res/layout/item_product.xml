@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="com.kung.dppf.ui.main.fragment.ProductViewItem" />
+
+        <variable
+            name="viewModel"
+            type="ProductViewItem" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="2dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView
+            android:id="@+id/tv_hh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.index}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            android:paddingLeft="6dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_sjsj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.productCode}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.productName}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_ljlx"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.typeName}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.entity.updateTime}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="@dimen/label_font_title2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_delete"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:text="修改"
+            android:textColor="@color/main_label_color"
+            android:textSize="@dimen/label_font_title2"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            onClickCommand="@{viewModel.onItemModifyClick}"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:text="删除"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/label_font_title2"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            onClickCommand="@{viewModel.onItemDeleteClick}"/>
+    </LinearLayout>
+</layout>

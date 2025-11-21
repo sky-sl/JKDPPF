@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">健坤小助手智能秤</string>
+    <!--机构名称-->
+    <string name="forg_name">健坤科技</string>
+
+    <string name="unit_kg">KG</string>
+    <string name="unit_g">g</string>
+    <string name="unit_quantity">pcs</string>
+
+    <!--产品编号-->
+    <string name="product_code">产品编号</string>
+    <!--产品名称-->
+    <string name="product_name">产品名称</string>
+    <!--配料表-->
+    <string name="product_formula">配料表</string>
+    <!--产品类型-->
+    <string name="product_type">品类</string>
+    <!--产品分类-->
+    <string name="product_type_name">产品分类</string>
+    <!--生产日期-->
+    <string name="product_produce_date">生产日期</string>
+    <!--保质期-->
+    <string name="product_shelf_life">保质期</string>
+    <!--贮存方法-->
+    <string name="product_storage">贮存方法</string>
+    <!--食用方法-->
+    <string name="product_eat">食用方法</string>
+    <!--注意事项-->
+    <string name="product_note">注意事项</string>
+    <!--执行标准-->
+    <string name="product_standard">执行标准</string>
+    <!--生产许可证编号-->
+    <string name="product_license">生产许可证编号</string>
+    <!--生产厂家-->
+    <string name="product_factory">生产厂家</string>
+    <!--地址-->
+    <string name="product_address">地址</string>
+    <!--委托商-->
+    <string name="product_entrust">委托商</string>
+    <!--委托商地址-->
+    <string name="product_entrust_address">委托商地址</string>
+    <!--产地-->
+    <string name="product_origin">产地</string>
+    <!--联系电话-->
+    <string name="product_phone">电话</string>
+    <!--营养成分-->
+    <string name="product_nutrition">营养成分</string>
+    <!--净含量-->
+    <string name="product_net_weight">净含量</string>
+
+    <!--产品编号-->
+    <string name="product_code_colon">产品编号：</string>
+    <!--产品名称-->
+    <string name="product_name_colon">品名：</string>
+    <!--配料表-->
+    <string name="product_formula_colon">配料表：</string>
+    <!--产品类型-->
+    <string name="product_type_colon">品类：</string>
+    <!--产品分类-->
+    <string name="product_type_name_colon">产品分类：</string>
+    <!--生产日期-->
+    <string name="product_produce_date_colon">生产日期：</string>
+    <!--保质期-->
+    <string name="product_shelf_life_colon">保质期：</string>
+    <!--贮存方法-->
+    <string name="product_storage_colon">贮存方法：</string>
+    <!--食用方法-->
+    <string name="product_eat_colon">食用方法：</string>
+    <!--注意事项-->
+    <string name="product_note_colon">注意事项：</string>
+    <!--执行标准-->
+    <string name="product_standard_colon">执行标准：</string>
+    <!--生产许可证编号-->
+    <string name="product_license_colon">生产许可证编号：</string>
+    <!--生产厂家-->
+    <string name="product_factory_colon">生产厂家：</string>
+    <!--地址-->
+    <string name="product_address_colon">地址：</string>
+    <!--委托商-->
+    <string name="product_entrust_colon">委托商：</string>
+    <!--委托商地址-->
+    <string name="product_entrust_address_colon">委托商地址：</string>
+    <!--产地-->
+    <string name="product_origin_colon">产地：</string>
+    <!--联系电话-->
+    <string name="product_phone_colon">电话：</string>
+    <!--营养成分-->
+    <string name="product_nutrition_colon">营养成分：</string>
+    <!--净含量-->
+    <string name="product_net_weight_colon">净含量：</string>
+    <!--项目-->
+    <string name="project">项目</string>
+    <!--每100克-->
+    <string name="per_100g">每100克</string>
+    <!--NRV%-->
+    <string name="nrv_percent">NRV%</string>
+</resources>

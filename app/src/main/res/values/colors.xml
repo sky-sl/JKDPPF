@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="textColor">#202020</color>
+    <color name="textColorHint">#A0A0A0</color>
+    <color name="textColorVice">#6C6C6C</color>
+    <color name="viewLineColor">#F0F0F0</color>
+
+    <color name="home_main_text_color">#2C9393</color>
+    <color name="text_weight">#E6511D</color>
+    <color name="text_content">#2C9393</color>
+
+    <color name="view_bg_green">#057222</color>
+    <color name="view_bg_red">#E60012</color>
+    <color name="view_bg_orange">#F39800</color>
+    <color name="view_bg_gray">#A0A0A0</color>
+
+    <color name="bg_main_normal">#D7ECEC</color>
+
+    <color name="view_border">#202020</color>
+
+    <color name="btn_text_normal">#ffffff</color>
+    <color name="btn_text_selected">#057222</color>
+    <color name="btn_text">#ffffff</color>
+
+    <color name="main_label_color">#52A3FF</color>
+
+    <color name="btnColorGreen">#43cf7c</color>
+    <color name="btnColorGreenLight">#ECFAF2</color>
+    <color name="btnColorRed">#e33c64</color>
+    <color name="btnColorRedLight">#FBE3E9</color>
+    <color name="textColorGreen">#00baad</color>
+    <color name="textColorGreenLight">#CCF1EF</color>
+
+    <color name="label_main_color">#346732</color>
+
+    <color name="textMainTitle">#505050</color>
+    <color name="textHint">#A0A0A0</color>
+
+    <color name="label_main_gray">#A0A0A0</color>
+    <color name="label_border">#202020</color>
+
+    <color name="trash_type_normal">#F0F7FC</color>
+    <color name="trash_type_selected">#06A580</color>
+    <color name="trash_type_price_normal">#F0F7FC</color>
+    <color name="trash_type_price_selected">#06A580</color>
+</resources>

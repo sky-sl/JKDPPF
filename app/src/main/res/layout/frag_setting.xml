@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.kung.dppf.ui.main.fragment.SettingViewModel" />
+
+        <variable
+            name="viewModel"
+            type="SettingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tv_btn_product"
+            onClickCommand="@{viewModel.onCommandManageProduct}"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="产品管理"
+            android:textColor="@color/btn_text_normal"
+            android:textSize="@dimen/font_btn_text"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_btn_type"
+            onClickCommand="@{viewModel.onCommandManageType}"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="品类管理"
+            android:textColor="@color/btn_text_normal"
+            android:textSize="@dimen/font_btn_text"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_btn_product"/>
+
+        <TextView
+            android:id="@+id/tv_btn_exit"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            android:background="@drawable/shape_btn_rect_corner_red"
+            android:text="退出系统"
+            android:gravity="center"
+            android:textColor="@color/btnColorRed"
+            android:textSize="@dimen/font_btn_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
+            onClickCommand="@{viewModel.onCommandExitApp}"/>
+
+
+        <TextView
+            android:id="@+id/tv_btn_back"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+            android:background="@drawable/button_background"
+            android:text="返回"
+            android:gravity="center"
+            android:textColor="@color/btn_text_normal"
+            android:textSize="@dimen/font_btn_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
+            onClickCommand="@{viewModel.onCommandBack}"/>
+
+        <TextView
+            android:id="@+id/tv_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="版本号："
+            android:layout_margin="12dp"
+            android:textColor="@color/textMainTitle"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_current_weight"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_current_weight"
+            app:layout_constraintHorizontal_bias="0.75"/>
+
+        <TextView
+            android:id="@+id/tv_current_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@={viewModel.versionName}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/tv_current"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_forg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="机构："
+            android:layout_marginTop="20dp"
+            android:textColor="@color/textMainTitle"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_current"
+            app:layout_constraintRight_toRightOf="@+id/tv_current"/>
+
+        <TextView
+            android:id="@+id/tv_forg_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@={viewModel.forgName}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/tv_forg"
+            app:layout_constraintTop_toTopOf="@+id/tv_forg"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_forg"/>
+
+        <TextView
+            android:id="@+id/tv_xlh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备编号："
+            android:layout_marginTop="20dp"
+            android:textColor="@color/textMainTitle"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_forg"
+            app:layout_constraintRight_toRightOf="@+id/tv_current"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@={viewModel.equipmentNo}"
+            android:textColor="@color/textMainTitle"
+            android:textSize="20dp"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/tv_xlh"
+            app:layout_constraintTop_toTopOf="@+id/tv_xlh"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_xlh"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

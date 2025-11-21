@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <import type="com.kung.dppf.ui.main.fragment.MainViewModel" />
+
+        <variable
+            name="viewModel"
+            type="MainViewModel" />
+
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFF4"
+        android:paddingHorizontal="@dimen/home_padding"
+        android:paddingTop="@dimen/dp_4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_statistics"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_home_view_corner"
+            app:layout_constraintHeight_percent="0.22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/app_name"
+                android:textColor="@color/textColor"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:text="今日称重打印总览"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_total_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:text="称重重量："
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/home_font_content2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total" />
+
+            <TextView
+                android:id="@+id/tv_total_weight_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="@{viewModel.totalWeight + @string/unit_kg}"
+                android:textColor="@color/text_content"
+                android:textSize="@dimen/home_font_content2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total_weight"
+                app:layout_constraintStart_toEndOf="@+id/tv_total_weight"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_weight" />
+
+            <TextView
+                android:id="@+id/tv_total_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:text="称重次数："
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/home_font_content2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_weight" />
+
+            <TextView
+                android:id="@+id/tv_total_count_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="@={viewModel.totalWeightCount}"
+                android:textColor="@color/text_content"
+                android:textSize="@dimen/home_font_content2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total_count"
+                app:layout_constraintStart_toEndOf="@+id/tv_total_count"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_count" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:background="@drawable/shape_btn_rect_corner_green"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="详情->"
+                android:gravity="center"
+                android:textColor="@color/text_content"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/btn_margin_parent_bottom"
+                android:layout_marginEnd="12dp"
+                onClickCommand="@{viewModel.onToRecordPage}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_worker_select"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_statistics"
+            app:layout_constraintBottom_toTopOf="@+id/layout_label_preview"
+            android:background="@drawable/shape_home_view_corner"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/tv_search_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="品类查询："
+                android:textColor="@color/home_main_text_color"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layout_search_key"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:background="@drawable/shape_input_rect_corner"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:layout_constraintStart_toStartOf="@+id/layout_worker_select"
+                app:layout_constraintEnd_toEndOf="@+id/layout_worker_select"
+                app:layout_constraintTop_toBottomOf="@+id/tv_search_key">
+
+                <EditText
+                    android:id="@+id/et_search_key"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输编号或者名称"
+                    android:maxLines="1"
+                    android:text="@={viewModel.searchKey}"
+                    android:textColor="@color/textColorGreen"
+                    android:textColorHint="@color/textColorHint"
+                    android:textSize="@dimen/edit_content_font" />
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_gp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="颜色："-->
+<!--                android:textColor="@color/home_main_text_color"-->
+<!--                android:textSize="26sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/tv_search_key"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/layout_search_key"/>-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group_gp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/tv_gp"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_gp"-->
+<!--                app:onCheckedChangedCommand="@{viewModel.onRadioGroupCheckColorChanged}">-->
+
+<!--                <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:enabled="true"-->
+<!--                    android:checked="@{viewModel.mTagColor == `黑`}"-->
+<!--                    android:textSize="26sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="黑" />-->
+
+<!--                <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:enabled="true"-->
+<!--                    android:checked="@{viewModel.mTagColor == `白`}"-->
+<!--                    android:text="白"-->
+<!--                    android:textSize="26sp"-->
+<!--                    android:textStyle="bold"/>-->
+
+<!--                <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:enabled="true"-->
+<!--                    android:checked="@{viewModel.mTagColor == `透`}"-->
+<!--                    android:text="透"-->
+<!--                    android:textSize="26sp"-->
+<!--                    android:textStyle="bold"/>-->
+
+<!--                <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:enabled="true"-->
+<!--                    android:checked="@{viewModel.mTagColor == `彩`}"-->
+<!--                    android:text="彩"-->
+<!--                    android:textSize="26sp"-->
+<!--                    android:textStyle="bold"/>-->
+<!--            </RadioGroup>-->
+
+            <TextView
+                android:id="@+id/tv_send_zero"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_btn_textview_corner_orage"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginLeft="10dp"
+                android:text="清零"
+                android:gravity="center"
+                android:textColor="@color/btn_text_normal"
+                android:textSize="@dimen/font_btn_text"
+                app:layout_constraintStart_toStartOf="@+id/layout_worker_select"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_worker_select"
+                app:layout_constraintEnd_toStartOf="@+id/tv_send_tare"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:layout_marginBottom="@dimen/btn_margin_parent_bottom"
+                onClickCommand="@{viewModel.onSendZero}"/>
+
+            <TextView
+                android:id="@+id/tv_send_tare"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_btn_textview_corner_orage"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginHorizontal="10dp"
+                android:text="去皮"
+                android:gravity="center"
+                android:textColor="@color/btn_text_normal"
+                android:textSize="@dimen/font_btn_text"
+                app:layout_constraintEnd_toEndOf="@+id/layout_worker_select"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_worker_select"
+                app:layout_constraintStart_toEndOf="@+id/tv_send_zero"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:layout_marginBottom="@dimen/btn_margin_parent_bottom"
+                onClickCommand="@{viewModel.onSendTare}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_label_preview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.3"
+            android:background="@drawable/label_border_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="80:80"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:paddingHorizontal="5dp">
+
+            <TextView
+                android:id="@+id/text_net_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/layout_product_info"
+                app:layout_constraintEnd_toEndOf="@+id/layout_product_info"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/product_net_weight_colon + viewModel.productWeight + @string/unit_kg}"
+                android:maxLines="1"
+                android:textSize="20sp"
+                android:textColor="@color/textColor"/>
+            <LinearLayout
+                android:id="@+id/layout_product_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/text_net_weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.4"
+                android:orientation="vertical">
+                <!--            <TextView-->
+                <!--                android:id="@+id/label_product_title"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                app:layout_constraintTop_toBottomOf="@+id/label_title"-->
+                <!--                app:layout_constraintStart_toStartOf="parent"-->
+                <!--                android:layout_marginStart="5dp"-->
+                <!--                android:layout_marginTop="3dp"-->
+                <!--                android:text="@{@string/product_type_name + @string/maohao}"-->
+                <!--                android:textSize="@dimen/print_font"-->
+                <!--                android:textColor="@color/textColor"/>-->
+                <TextView
+                    android:id="@+id/label_product_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_type_name_colon + viewModel.mSelectedProductBean.typeName}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_formula_colon + viewModel.mSelectedProductBean.ingredientContent}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_produce_date_colon + viewModel.mProductionDate}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_shelf_life_colon + viewModel.mSelectedProductBean.shelfLife}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_storage_colon + viewModel.mSelectedProductBean.storageMethod}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_eat_colon + viewModel.mSelectedProductBean.edibleMethod}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_note_colon + viewModel.mSelectedProductBean.precautions}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/layout_product_nutrition"
+                app:layout_constraintEnd_toEndOf="@+id/layout_product_nutrition"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/product_name_colon + viewModel.mSelectedProductBean.productName}"
+                android:maxLines="1"
+                android:textSize="20sp"
+                android:textColor="@color/textColor"/>
+
+            <TextView
+                android:id="@+id/text_nutrition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/layout_product_nutrition"
+                app:layout_constraintEnd_toEndOf="@+id/layout_product_nutrition"
+                app:layout_constraintTop_toBottomOf="@+id/text_product_name"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/product_nutrition"
+                android:maxLines="1"
+                android:textSize="@dimen/print_font"
+                android:textColor="@color/textColor"/>
+
+            <LinearLayout
+                android:id="@+id/layout_product_nutrition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/text_nutrition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.6"
+                android:background="@drawable/label_border_black"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/project"
+                        android:textSize="@dimen/print_font"
+                        android:textColor="@color/textColor"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/per_100g"
+                        android:textSize="@dimen/print_font"
+                        android:textColor="@color/textColor"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="@string/nrv_percent"
+                        android:textSize="@dimen/print_font"
+                        android:textColor="@color/textColor"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/textColor"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:itemBinding="@{viewModel.itemBindingNutrition}"
+                    app:items="@{viewModel.observableListNutrition}"
+                    app:layoutManager="@{LayoutManagers.linear()}"
+                    app:lineManager="@{LineManagers.horizontal()}"
+                    android:layout_margin="2dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_product_info2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_standard_colon + viewModel.mSelectedProductBean.standard}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_license_colon + viewModel.mSelectedProductBean.productionLicense}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_factory_colon + viewModel.mSelectedProductBean.manufacturer}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_address_colon + viewModel.mSelectedProductBean.address}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_entrust_colon + viewModel.mSelectedProductBean.entrust}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_entrust_address_colon + viewModel.mSelectedProductBean.entrustAddress}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_origin_colon + viewModel.mSelectedProductBean.origin}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/product_phone_colon + viewModel.mSelectedProductBean.phone}"
+                    android:textSize="@dimen/print_font"
+                    android:textColor="@color/textColor"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_home_view_corner"
+            app:layout_constraintStart_toEndOf="@+id/layout_statistics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_fjzx"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:itemBinding="@{viewModel.itemBindingProduct}"
+                app:items="@{viewModel.observableListProduct}"
+                app:layoutManager="@{LayoutManagers.grid(6)}"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/view_weight"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false" />
+
+            <View
+                android:id="@+id/view_weight"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/shape_view_corner"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tv_trash_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.mSelectedProductBean.productName}"
+                android:hint="产品名称"
+                android:textSize="@dimen/home_font_title1"
+                android:textColor="@color/home_main_text_color"
+                app:layout_constraintStart_toStartOf="@+id/view_weight"
+                app:layout_constraintTop_toTopOf="@+id/view_weight"
+                android:layout_marginLeft="12dp"/>
+
+            <TextView
+                android:id="@+id/tv_trash_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="产品编号："
+                android:textSize="@dimen/home_font_title2"
+                android:textColor="@color/textMainTitle"
+                app:layout_constraintStart_toEndOf="@+id/tv_trash_type"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_trash_type"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="12dp"/>
+
+            <TextView
+                android:id="@+id/tv_unit_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.mSelectedProductBean.productCode}"
+                android:hint="--"
+                android:textSize="@dimen/home_font_content"
+                android:textColor="@color/textMainTitle"
+                app:layout_constraintStart_toEndOf="@+id/tv_trash_price"
+                app:layout_constraintTop_toTopOf="@+id/tv_trash_price"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_trash_price" />
+
+            <TextView
+                android:id="@+id/tv_factory_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日期："
+                android:textSize="@dimen/home_font_title2"
+                android:textColor="@color/home_main_text_color"
+                app:layout_constraintStart_toStartOf="@+id/tv_trash_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_trash_price"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="@dimen/edit_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/shape_input_rect_corner"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/tv_box_tare"
+                app:layout_constraintTop_toTopOf="@+id/tv_factory_name"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="选择生产日期"
+                    android:text="@={viewModel.mProductionDate}"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColorHint"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/btn_edit"
+                    android:layout_height="@dimen/btn_edit"
+                    android:src="@mipmap/ic_edit"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    onClickCommand="@{viewModel.onEditTagTitleClick}"
+                    android:padding="5dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_box_tare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="皮重："
+                android:textSize="@dimen/home_font_title2"
+                android:textColor="@color/home_main_text_color"
+                app:layout_constraintStart_toStartOf="@+id/tv_factory_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_factory_name"
+                android:layout_marginTop="15dp"/>
+
+            <LinearLayout
+                android:id="@+id/layout_tare"
+                android:layout_width="@dimen/edit_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/shape_input_rect_corner"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/tv_box_tare"
+                app:layout_constraintTop_toTopOf="@+id/tv_box_tare"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="输入皮重"
+                    android:text="@={viewModel.mTareWeight}"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColorHint"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/btn_edit"
+                    android:layout_height="@dimen/btn_edit"
+                    android:src="@mipmap/ic_edit"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    onClickCommand="@{viewModel.onEditTare}"
+                    android:padding="5dp"/>
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/tv_kj_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打印份数："
+                android:textSize="20sp"
+                android:textColor="@color/home_main_text_color"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_box_tare"
+                app:layout_constraintTop_toBottomOf="@+id/tv_box_tare"/>
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/tv_kj_date"
+                app:layout_constraintTop_toTopOf="@+id/tv_kj_date"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_kj_date"
+                app:onCheckedChangedCommand="@{viewModel.onRadioGroupCheckChanged}">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:checked="@{viewModel.mPrintSelected == 0}"
+                    android:text="不打印" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:checked="@{viewModel.mPrintSelected == 1}"
+                    android:text="打印1份" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:checked="@{viewModel.mPrintSelected == 2}"
+                    android:text="打印2份"/>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_weight_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kg"
+                android:textSize="@dimen/home_font_title1"
+                android:textColor="@color/home_main_text_color"
+                app:layout_constraintStart_toEndOf="@+id/tv_weight_value"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_weight_value"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="12dp"/>
+
+            <LinearLayout
+                android:id="@+id/layout_printer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:background="@drawable/shape_btn_rect_corner_red"
+                app:layout_constraintTop_toTopOf="@+id/tv_trash_type"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_trash_type"
+                app:layout_constraintEnd_toEndOf="@+id/tv_weight_name"
+                android:gravity="center_vertical"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/iv_printer"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@mipmap/ic_printer_off" />
+
+                <TextView
+                    android:id="@+id/tv_printer_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="未连接"
+                    android:textColor="@color/btnColorRed"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_weight_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0.00"
+                android:text="@={viewModel.productWeight}"
+                android:textSize="@dimen/home_font_weight"
+                android:textColor="@color/text_weight"
+                app:layout_constraintStart_toStartOf="@+id/view_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view_weight"
+                app:layout_constraintBottom_toBottomOf="@+id/view_weight"
+                app:layout_constraintHorizontal_bias="0.53"
+                android:layout_marginLeft="12dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_btn_setting"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="@dimen/btn_textview_width_percent"
+                app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+                android:background="@drawable/button_background"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginRight="20dp"
+                android:text="更多设置"
+                android:gravity="center"
+                android:textColor="@color/btn_text_normal"
+                android:textSize="@dimen/font_btn_text"
+                app:layout_constraintEnd_toEndOf="@+id/view_weight"
+                app:layout_constraintTop_toTopOf="@+id/view_weight"
+                app:layout_constraintBottom_toTopOf="@+id/tv_btn_sync"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:layout_marginBottom="@dimen/btn_margin_parent_bottom"
+                onClickCommand="@{viewModel.onToSettingPage}"/>
+
+            <TextView
+                android:id="@+id/tv_btn_sync"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="@dimen/btn_textview_width_percent"
+                app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+                android:background="@drawable/button_background"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginRight="20dp"
+                android:text="称重记录"
+                android:gravity="center"
+                android:textColor="@color/btn_text_normal"
+                android:textSize="@dimen/font_btn_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_btn_setting"
+                app:layout_constraintBottom_toTopOf="@+id/tv_btn_save"
+                app:layout_constraintEnd_toEndOf="@+id/view_weight"
+                android:layout_marginBottom="@dimen/btn_margin_parent_bottom"
+                onClickCommand="@{viewModel.onToRecordPage}"/>
+
+            <TextView
+                android:id="@+id/tv_btn_save"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="@dimen/btn_textview_width_percent"
+                app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+                android:background="@drawable/button_background"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginRight="20dp"
+                android:text="保存打印"
+                android:gravity="center"
+                android:textColor="@color/btn_text_normal"
+                android:textSize="@dimen/font_btn_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_btn_sync"
+                app:layout_constraintEnd_toEndOf="@+id/view_weight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/btn_margin_parent_bottom"
+                onClickCommand="@{viewModel.onSaveAndPrint}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

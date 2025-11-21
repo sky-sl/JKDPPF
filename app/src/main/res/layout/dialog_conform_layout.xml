@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="20.0dip"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="20dp">
+
+    <LinearLayout
+        android:layout_width="580dp"
+        android:layout_height="370dp"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/textColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="卸货确认"
+            android:textSize="36dp"
+            android:paddingVertical="15dp"
+            android:gravity="center"
+            android:background="#F1F1F1"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/message1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="30dp"
+                android:gravity="left|center"
+                android:text="是否确认卸货？"
+                android:lineSpacingMultiplier="1.5"
+                android:minHeight="60.0dip"
+                android:paddingBottom="5.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip"
+                android:paddingTop="5.0dip" />
+            <TextView
+                android:id="@+id/message2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="(删除后，不可恢复)"
+                android:gravity="left|center"
+                android:textSize="20dp"
+                android:lineSpacingMultiplier="1.5"
+                android:paddingBottom="5.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip"
+                android:paddingTop="5.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/negativeButton"
+                android:layout_width="0dp"
+                android:layout_height="80.0dip"
+                android:layout_weight="1"
+                android:background="#E1FFFD"
+                android:gravity="center"
+                android:textColor="#00baad"
+                android:textSize="36dp"
+                android:text="取消" />
+
+            <TextView
+                android:id="@+id/positiveButton"
+                android:layout_width="0dp"
+                android:layout_height="80.0dip"
+                android:layout_weight="1"
+                android:background="#00baad"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="36dp"
+                android:text="确认" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

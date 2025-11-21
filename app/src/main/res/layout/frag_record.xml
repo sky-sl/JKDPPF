@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.kung.dppf.ui.main.fragment.RecordViewModel" />
+
+        <variable
+            name="viewModel"
+            type="RecordViewModel" />
+
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingHorizontal="6dp"
+            android:background="@color/btnColorGreenLight"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7.25"
+                android:orientation="vertical"
+                android:padding="1dp"
+                android:background="@drawable/shape_rect_corner_green">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/shape_rect_corner_top_green">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="记录统计"
+                        android:textColor="@color/textMainTitle"
+                        android:textStyle="bold"
+                        android:textSize="30dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="时间范围："
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:background="@drawable/shape_input_rect_corner"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingVertical="2dp"
+                        app:layout_constraintStart_toEndOf="@+id/tv_originplace"
+                        app:layout_constraintTop_toTopOf="@+id/tv_originplace"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_originplace"
+                        onClickCommand="@{viewModel.onCommandDateStart}">
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="开始时间"
+                            android:text="@{viewModel.mStartDate}"
+                            android:maxLines="1"
+                            android:gravity="left|center"
+                            android:textColor="@color/textMainTitle"
+                            android:textColorHint="@color/textColorHint"
+                            android:textSize="@dimen/text_font_value" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginHorizontal="5dp"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:background="@drawable/shape_input_rect_corner"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingVertical="2dp"
+                        app:layout_constraintStart_toEndOf="@+id/tv_originplace"
+                        app:layout_constraintTop_toTopOf="@+id/tv_originplace"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_originplace"
+                        onClickCommand="@{viewModel.onCommandDateEnd}">
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="结束时间"
+                            android:gravity="left|center"
+                            android:text="@{viewModel.mEndDate}"
+                            android:maxLines="1"
+                            android:textColor="@color/textMainTitle"
+                            android:textColorHint="@color/textColorHint"
+                            android:textSize="@dimen/text_font_value" />
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="产品关键字："
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2"/>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="200dp"
+                        android:gravity="center"
+                        android:background="@drawable/shape_input_rect_corner"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@+id/tv_title_url"
+                        app:layout_constraintTop_toTopOf="@+id/tv_title_url"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_title_url"
+                        android:paddingLeft="5dp"
+                        android:paddingVertical="2dp"
+                        onClickCommand="@{viewModel.onCommandSearchKey}">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="输入名称"
+                            android:text="@{viewModel.mKey}"
+                            android:textColor="@color/textColor"
+                            android:textColorHint="@color/textColorHint"
+                            android:textSize="@dimen/text_font_value" />
+
+                        <ImageView
+                            android:layout_width="@dimen/btn_key"
+                            android:layout_height="@dimen/btn_key"
+                            android:src="@mipmap/ic_edit"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/textMainTitle" />
+
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_width="120dp"
+                        android:layout_marginRight="20dp"
+                        app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+                        android:background="@drawable/button_background"
+                        android:text="查询"
+                        android:gravity="center"
+                        android:textColor="@color/btn_text"
+                        android:textSize="@dimen/font_btn_text"
+                        onClickCommand="@{viewModel.onCommandSearch}" />
+
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_width="120dp"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintHeight_percent="@dimen/btn_textview_height_percent"
+                        android:background="@drawable/button_background"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="导出"
+                        android:gravity="center"
+                        android:textColor="@color/btn_text"
+                        android:textSize="@dimen/font_btn_text"
+                        onClickCommand="@{viewModel.onExportData}"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="46dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:text="序号"
+                        android:padding="5dp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:text="时间"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:text="@string/product_code"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/product_name"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/product_type"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:text="@string/product_produce_date"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:text="@string/product_shelf_life"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:text="@string/product_net_weight"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="0.7"-->
+<!--                        android:text="批次"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:textColor="@color/textMainTitle"-->
+<!--                        android:textSize="@dimen/label_font_title2" />-->
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:text="操作"
+                        android:gravity="center"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/btnColorGreen"/>
+
+                <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+                    android:id="@+id/recyclingRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:onLoadMoreCommand="@{viewModel.onLoadMoreCommand}"
+                    app:onRefreshCommand="@{viewModel.onRefreshCommand}"
+                    app:tr_head_height="80dp"
+                    app:tr_wave_height="80dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:itemBinding="@{viewModel.itemBinding}"
+                        app:items="@{viewModel.observableList}"
+                        app:layoutManager="@{LayoutManagers.linear()}"
+                        app:lineManager="@{LineManagers.horizontal()}"/>
+
+                </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:orientation="horizontal"
+                    android:background="@color/textColorGreenLight">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:text="@{viewModel.mCurrentRecordNum + `/` + viewModel.mTotalRecordNum}"
+                        android:gravity="center"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="合计"
+                        android:gravity="center"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="总数量:"
+                        android:gravity="center"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:text="@={viewModel.mTotalProductNum}"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="总净重:"
+                        android:gravity="center"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:text="@={viewModel.mTotalWeight}"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="总毛重:"
+                        android:gravity="center"
+                        android:textColor="@color/home_main_text_color"
+                        android:textSize="@dimen/label_font_title2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:text="@={viewModel.mTotalGrossWeight}"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textMainTitle"
+                        android:textSize="@dimen/label_font_title2" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
